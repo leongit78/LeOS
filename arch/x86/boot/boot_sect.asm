@@ -1,28 +1,36 @@
-mov bx, 5
+[org 0x7c00]
 
-cmp bx, 4
-jg _else_if
+mov bx, HELLO_MSG
+call print_string
 
-mov al, 'A'
-jmp _print
+mov bx, LINE_FEED
+call print_string
 
-_else_if:
-    cmp bx, 40
-    jge _else
-    
-    mov al, 'B'
-    jmp _print
+mov bx, CARRIAGE_RETURN
+call print_string
 
-_else:
-    mov al, 'C'
-    jmp _print
-
-_print:
-    mov ah, 0x0e  ; scrolling teletype BIOS routine
-    int 0x10
+mov bx, GOODBYE_MSG
+call print_string
 
 jmp $ 
 
+%include "print_string.asm"
+
+; Data
+
+HELLO_MSG:
+    db 'Hello world!', 0
+
+GOODBYE_MSG:
+    db 'Goodbye!', 0
+
+LINE_FEED:
+    db 0x0a, 0
+
+CARRIAGE_RETURN:
+    db 0x0d, 0
+
+; Padding and magic number
 times 510-($-$$) db 0
 
 dw 0xaa55
