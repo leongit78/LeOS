@@ -2,4 +2,4 @@
 Leos is the name of the Operating system i'm working on.
 Here i will post my new ideas and developings on it.
 
-## Subheader
+Project status: Suspended, till i move on Linux Arch(currently im on Windows 10)
